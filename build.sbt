@@ -73,14 +73,12 @@ lazy val test =
       // Use yarn as it is faster than npm
       useYarn := true,
       version in webpack := "4.44.1",
-      version in webpackCliVersion := "3.3.11",
       // Compile tests to JS using fast-optimisation
       scalaJSStage in Test := FastOptStage,
       libraryDependencies ++= Seq(
         "org.scalameta" %%% "munit"     % "0.7.22",
         "org.typelevel" %%% "cats-core" % "2.4.2" % Test
       ),
-      webpackExtraArgs in Test := Seq("--verbose", "--progress", "true"),
       webpackConfigFile in Test := Some(
         baseDirectory.value / "src" / "webpack" / "test.webpack.config.js"
       ),
