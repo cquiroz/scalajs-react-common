@@ -65,8 +65,12 @@ package object common extends AllSyntax {
   // End Scala Components
 
   // Begin JS Components
-  type RenderFn[P]             = Generic.Unmounted[P, Unit]
-  type Render[P <: js.Object]  = UnmountedWithRawType[P, Null, RawMounted[P, Null]]
+  type RenderFn[P]            = Generic.Unmounted[P, Unit]
+  type Render[P <: js.Object] = UnmountedWithRawType[P, Null, RawMounted[P, Null]]
+
+  // type Render[P]   = Generic.Unmounted[P, _]
+  // type RenderFn[P] = Render[P]
+
   type RenderFnC[P]            = CtorType.ChildrenArgs => RenderFn[P]
   type RenderC[P <: js.Object] = CtorType.ChildrenArgs => Render[P]
 

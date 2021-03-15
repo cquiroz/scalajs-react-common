@@ -24,7 +24,7 @@ trait JsComponent[P <: js.Object] {
 }
 
 trait GenericFnComponent[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U] extends JsComponent[P] {
-  @inline def render: RenderFn[P]
+  @inline def render: Render[P]
 }
 
 trait GenericFnComponentC[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]

@@ -125,9 +125,7 @@ package syntax {
       new JsNumberOps(d)
 
     // Start Render(Fn) conversions
-    implicit def gFnProps2VdomP[P <: js.Object](
-      p: GenericFnComponentP[P]
-    ): RenderFn[P] =
+    implicit def gFnProps2VdomP[P <: js.Object](p: GenericFnComponentP[P]): Render[P] =
       p.render
 
     implicit def gProps2FnUnmountedPC[P <: js.Object](p: GenericFnComponentPC[P, _]): RenderFn[P] =
