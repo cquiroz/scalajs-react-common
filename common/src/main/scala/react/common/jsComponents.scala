@@ -23,17 +23,17 @@ trait JsComponent[P <: js.Object] {
   def cprops: P
 }
 
-trait GenericFnComponent[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U] extends JsComponent[P] {
+trait GenericJsComponent[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U] extends JsComponent[P] {
   @inline def render: Render[P]
 }
 
-trait GenericFnComponentC[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]
+trait GenericJsComponentC[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]
     extends JsComponent[P] {
   val children: CtorType.ChildrenArgs
   def withChildren(children: CtorType.ChildrenArgs): A
 
-  @inline def renderWith: RenderFnC[P]
-  @inline def render: RenderFn[P] = renderWith(children)
+  @inline def renderWith: RenderC[P]
+  @inline def render: Render[P] = renderWith(children)
 }
 
 trait Passthrough[P <: js.Object] extends JsComponent[P] {
@@ -65,7 +65,7 @@ trait GenericFnComponentA[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]
   protected val component: JsFn.Component[P, CT]
   def addModifiers(modifiers: Seq[TagMod]): A
 
-  @inline def render: RenderFn[P] = component.applyGeneric(cprops)()
+  @inline def render: Render[P] = component.applyGeneric(cprops)()
 }
 
 trait GenericFnComponentAC[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]
@@ -73,23 +73,10 @@ trait GenericFnComponentAC[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]
   protected val component: JsFn.Component[P, CT]
   def addModifiers(modifiers: Seq[TagMod]): A
 
-  @inline def render: RenderFn[P] = {
+  @inline def render: Render[P] = {
     val (props, children) = rawModifiers
     component.applyGeneric(props)(children: _*)
   }
-}
-
-trait GenericJsComponent[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U] extends JsComponent[P] {
-  @inline def render: Render[P]
-}
-
-trait GenericJsComponentC[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]
-    extends JsComponent[P] {
-  val children: CtorType.ChildrenArgs
-  def withChildren(children: CtorType.ChildrenArgs): A
-
-  @inline def renderWith: RenderC[P]
-  @inline def render: Render[P] = renderWith(children)
 }
 
 trait GenericJsComponentA[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]

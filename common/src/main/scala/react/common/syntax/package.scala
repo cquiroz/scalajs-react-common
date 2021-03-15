@@ -125,18 +125,13 @@ package syntax {
       new JsNumberOps(d)
 
     // Start Render(Fn) conversions
-    implicit def gFnProps2VdomP[P <: js.Object](p: GenericFnComponentP[P]): Render[P] =
-      p.render
 
-    implicit def gProps2FnUnmountedPC[P <: js.Object](p: GenericFnComponentPC[P, _]): RenderFn[P] =
-      p.render
-
-    implicit def gFnProps2VdomPA[P <: js.Object](p: GenericFnComponentPA[P, _]): RenderFn[P] =
+    implicit def gFnProps2VdomPA[P <: js.Object](p: GenericFnComponentPA[P, _]): Render[P] =
       p.render
 
     implicit def gProps2FnUnmountedPAC[P <: js.Object](
       p: GenericFnComponentPAC[P, _]
-    ): RenderFn[P] =
+    ): Render[P] =
       p.render
 
     implicit def gProps2VdomP[P <: js.Object](p: GenericComponentP[P]): Render[P] =
@@ -153,12 +148,6 @@ package syntax {
     // End Render(Fn) conversions
 
     // Start VdomNode conversions
-    implicit def gFnProps2VdomNodeP[P <: js.Object](p: GenericFnComponentP[P]): VdomNode =
-      p.render
-
-    implicit def gFnProps2VdomNodePC[P <: js.Object](p: GenericFnComponentPC[P, _]): VdomNode =
-      p.render
-
     implicit def gProps2VdomNodePA[P <: js.Object](p: GenericFnComponentPA[P, _]): VdomNode =
       p.render
 
@@ -176,16 +165,6 @@ package syntax {
 
     implicit def gProps2VdomNodePAC[P <: js.Object](p: GenericComponentPAC[P, _]): VdomNode =
       p.render
-
-    implicit def ugFnProps2VdomNodeP[P <: js.Object](
-      p: GenericFnComponentP[P]
-    ): js.UndefOr[VdomNode] =
-      p.render: VdomNode
-
-    implicit def ugFnProps2VdomNodePC[P <: js.Object](
-      p: GenericFnComponentPC[P, _]
-    ): js.UndefOr[VdomNode] =
-      p.render: VdomNode
 
     implicit def ugProps2VdomNodePA[P <: js.Object](
       p: GenericFnComponentPA[P, _]

@@ -4,8 +4,6 @@ import japgolly.scalajs.react.CtorType
 import japgolly.scalajs.react.vdom.VdomElement
 import japgolly.scalajs.react.vdom.VdomNode
 import japgolly.scalajs.react.component.Generic
-import japgolly.scalajs.react.component.Js.RawMounted
-import japgolly.scalajs.react.component.Js.UnmountedWithRawType
 import japgolly.scalajs.react.vdom.TagMod
 import scala.scalajs.js
 import react.common.syntax.AllSyntax
@@ -65,43 +63,27 @@ package object common extends AllSyntax {
   // End Scala Components
 
   // Begin JS Components
-  type RenderFn[P]            = Generic.Unmounted[P, Unit]
-  type Render[P <: js.Object] = UnmountedWithRawType[P, Null, RawMounted[P, Null]]
+  type Render[P <: js.Object] = Generic.Unmounted[P, _]
 
-  // type Render[P]   = Generic.Unmounted[P, _]
-  // type RenderFn[P] = Render[P]
-
-  type RenderFnC[P]            = CtorType.ChildrenArgs => RenderFn[P]
   type RenderC[P <: js.Object] = CtorType.ChildrenArgs => Render[P]
 
-  type GenericFnComponentP[P <: js.Object]      = GenericFnComponent[P, CtorType.Props, Unit]
-  type GenericFnComponentPC[P <: js.Object, A]  =
-    GenericFnComponentC[P, CtorType.PropsAndChildren, Unit, A]
-  type GenericFnComponentPA[P <: js.Object, A]  = GenericFnComponentA[P, CtorType.Props, Unit, A]
+  type GenericComponentP[P <: js.Object] =
+    GenericJsComponent[P, CtorType.Props, Unit]
+
+  type GenericComponentPC[P <: js.Object, A] =
+    GenericJsComponentC[P, CtorType.PropsAndChildren, Unit, A]
+
+  type GenericFnComponentPA[P <: js.Object, A] =
+    GenericFnComponentA[P, CtorType.Props, Unit, A]
+
   type GenericFnComponentPAC[P <: js.Object, A] =
     GenericFnComponentAC[P, CtorType.PropsAndChildren, Unit, A]
 
-  type GenericComponentP[P <: js.Object]      = GenericJsComponent[P, CtorType.Props, Unit]
-  type GenericComponentPC[P <: js.Object, A]  =
-    GenericJsComponentC[P, CtorType.PropsAndChildren, Unit, A]
-  type GenericComponentPA[P <: js.Object, A]  = GenericJsComponentA[P, CtorType.Props, Unit, A]
+  type GenericComponentPA[P <: js.Object, A] =
+    GenericJsComponentA[P, CtorType.Props, Unit, A]
+
   type GenericComponentPAC[P <: js.Object, A] =
     GenericJsComponentAC[P, CtorType.PropsAndChildren, Unit, A]
-
-  implicit class GenericFnComponentPCOps[P <: js.Object, A](val c: GenericFnComponentPC[P, A])
-      extends AnyVal {
-    def apply(children: VdomNode*): A = c.withChildren(children)
-  }
-
-  implicit class GenericFnComponentPAOps[P <: js.Object, A](val c: GenericFnComponentPA[P, A])
-      extends AnyVal {
-    def apply(modifiers: TagMod*): A = c.addModifiers(modifiers)
-  }
-
-  implicit class GenericFnComponentPACOps[P <: js.Object, A](val c: GenericFnComponentPAC[P, A])
-      extends AnyVal {
-    def apply(modifiers: TagMod*): A = c.addModifiers(modifiers)
-  }
 
   implicit class GenericComponentPCOps[P <: js.Object, A](val c: GenericComponentPC[P, A])
       extends AnyVal {
