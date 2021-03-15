@@ -20,7 +20,7 @@ class AttrsBuilder(p: js.Object) extends Builder.ToJs {
 }
 
 trait JsComponent[P <: js.Object] {
-  def cprops: P
+  protected def cprops: P
 }
 
 trait GenericJsComponent[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U] extends JsComponent[P] {
@@ -57,7 +57,7 @@ trait PassthroughAC[P <: js.Object] extends Passthrough[P] {
     (props, builder.childrenAsVdomNodes)
   }
 
-  def cprops: P = rawModifiers._1
+  override protected def cprops: P = rawModifiers._1
 }
 
 trait GenericFnComponentA[P <: js.Object, CT[-p, +u] <: CtorType[p, u], U, A]
