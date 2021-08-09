@@ -2,7 +2,7 @@ package react.common
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.component.Scala
-import japgolly.scalajs.react.component.Js
+// import japgolly.scalajs.react.component.Js
 // import japgolly.scalajs.react.ReactExtensions._
 import scalajs.js
 import japgolly.scalajs.react.component.ScalaFn

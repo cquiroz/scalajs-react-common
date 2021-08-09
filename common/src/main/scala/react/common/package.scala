@@ -51,12 +51,12 @@ package object common extends AllSyntax {
   ): VdomElement =
     p.toUnmounted
 
-  implicit class PropsWithChildren2Component[Props, CT[-p, +u] <: CtorType[p, u]](
+  implicit class PropsWithChildren2Component[Props, CT[-p, +u] <: CtorType[p, u], S, B](
     p:  ReactRender[Props, CT]
   )(implicit
-    ev: CT[Props, Scala.Unmounted[Props, _, _]] <:< CtorType.PropsAndChildren[
+    ev: CT[Props, Scala.Unmounted[Props, S, B]] <:< CtorType.PropsAndChildren[
       Props,
-      Scala.Unmounted[Props, _, _]
+      Scala.Unmounted[Props, S, B]
     ]
   ) {
     @inline def apply(first: CtorType.ChildArg, rest: CtorType.ChildArg*): VdomElement =

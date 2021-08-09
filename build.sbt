@@ -26,6 +26,9 @@ inThisBuild(
   )
 )
 
+ThisBuild / scalaVersion := "2.13.6"
+ThisBuild / crossScalaVersions := Seq("2.13.6", "3.0.1")
+
 lazy val common: Project =
   project
     .in(file("common"))
