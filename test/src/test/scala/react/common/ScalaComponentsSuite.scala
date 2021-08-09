@@ -7,10 +7,10 @@ import japgolly.scalajs.react.ScalaComponent
 
 class ScalaComponentSuite extends munit.FunSuite {
 
-  case class Props() extends ReactProps[Props](propsComponent)
+  case class Props() extends ReactProps[Props, Unit, Unit](propsComponent)
 
   case class PropsWithChildren()
-      extends ReactPropsWithChildren[PropsWithChildren](propsWithChildrenComponent)
+      extends ReactPropsWithChildren[PropsWithChildren, Unit, Unit](propsWithChildrenComponent)
 
   val propsComponent =
     ScalaComponent.builder[Props].render(_ => <.div).build

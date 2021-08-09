@@ -69,19 +69,19 @@ sealed trait ReactComponentProps[Props, CT[-p, +u] <: CtorType[p, u]]
       override protected[common] lazy val props = ReactComponentProps.this.props
     }
 
-  // def withRef[S, B](ref: Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]) =
-  //   copyComponent(
-  //     component
-  //       // .asInstanceOf[Js.Component[Props, S, B, CT]]
-  //       .withRef(ref)
-  //   )
-  //
-  // def withOptionalRef[S, B](ref: Option[Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]]) =
-  //   copyComponent(
-  //     component
-  //       .asInstanceOf[Scala.Component[Props, S, B, CT]]
-  //       .withOptionalRef(ref)
-  //   )
+  def withRef[S, B](ref: Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]) =
+    copyComponent(
+      component
+        .asInstanceOf[Scala.Component[Props, S, B, CT]]
+        .withRef(ref)
+    )
+
+  def withOptionalRef[S, B](ref: Option[Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]]) =
+    copyComponent(
+      component
+        .asInstanceOf[Scala.Component[Props, S, B, CT]]
+        .withOptionalRef(ref)
+    )
 }
 
 class ReactProps[Props](val component: Scala.Component[Props, _, _, CtorType.Props])
