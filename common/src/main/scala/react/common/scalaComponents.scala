@@ -2,6 +2,7 @@ package react.common
 
 import japgolly.scalajs.react._
 import japgolly.scalajs.react.component.Scala
+import japgolly.scalajs.react.component.Js
 // import japgolly.scalajs.react.ReactExtensions._
 import scalajs.js
 import japgolly.scalajs.react.component.ScalaFn
@@ -68,19 +69,19 @@ sealed trait ReactComponentProps[Props, CT[-p, +u] <: CtorType[p, u]]
       override protected[common] lazy val props = ReactComponentProps.this.props
     }
 
-  def withRef[S, B](ref: Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]) =
-    copyComponent(
-      component
-        .asInstanceOf[ScalaComponent.Component[Props, S, B, CT]]
-        .withRef(ref)
-    )
-
-  def withOptionalRef[S, B](ref: Option[Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]]) =
-    copyComponent(
-      component
-        .asInstanceOf[Scala.Component[Props, S, B, CT]]
-        .withOptionalRef(ref)
-    )
+  // def withRef[S, B](ref: Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]) =
+  //   copyComponent(
+  //     component
+  //       // .asInstanceOf[Js.Component[Props, S, B, CT]]
+  //       .withRef(ref)
+  //   )
+  //
+  // def withOptionalRef[S, B](ref: Option[Ref.Handle[ScalaComponent.RawMounted[Props, S, B]]]) =
+  //   copyComponent(
+  //     component
+  //       .asInstanceOf[Scala.Component[Props, S, B, CT]]
+  //       .withOptionalRef(ref)
+  //   )
 }
 
 class ReactProps[Props](val component: Scala.Component[Props, _, _, CtorType.Props])

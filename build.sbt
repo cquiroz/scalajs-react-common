@@ -101,10 +101,11 @@ lazy val root = (project in file("."))
   .aggregate(common, cats, test)
 
 lazy val commonSettings = Seq(
-  scalaVersion           := "2.13.6",
-  organization           := "io.github.cquiroz.react",
-  description            := "scala.js react common utilities",
-  sonatypeProfileName    := "io.github.cquiroz",
+  scalaVersion := "2.13.6",
+  crossScalaVersions := Seq("2.13.6", "3.0.1"),
+  organization := "io.github.cquiroz.react",
+  description := "scala.js react common utilities",
+  sonatypeProfileName := "io.github.cquiroz",
   Test / publishArtifact := false,
   libraryDependencies ++= Seq(
     "com.github.japgolly.scalajs-react" %%% "core" % scalaJsReact,
