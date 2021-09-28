@@ -41,7 +41,8 @@ lazy val cats: Project   =
     .enablePlugins(ScalaJSPlugin)
     .settings(commonSettings: _*)
     .settings(
-      name := "cats",
+      name            := "cats",
+      skip in publish := true,
       libraryDependencies ++= Seq(
         "org.typelevel" %%% "cats-core"        % "2.6.1",
         "org.typelevel" %%% "cats-testkit"     % "2.6.1"  % Test,
@@ -61,6 +62,7 @@ lazy val test            =
     .settings(commonSettings: _*)
     .settings(
       name                                                       := "test",
+      skip in publish                                            := true,
       Test / npmDependencies ++= Seq(
         "react"     -> reactJS,
         "react-dom" -> reactJS
