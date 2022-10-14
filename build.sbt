@@ -100,7 +100,7 @@ lazy val root = (project in file("."))
   .aggregate(common, cats, test)
 
 lazy val commonSettings = Seq(
-  scalaVersion           := "2.13.8",
+  scalaVersion           := "2.13.10",
   organization           := "io.github.cquiroz.react",
   description            := "scala.js react common utilities",
   sonatypeProfileName    := "io.github.cquiroz",
