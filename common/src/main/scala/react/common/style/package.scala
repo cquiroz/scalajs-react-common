@@ -8,7 +8,7 @@ import js.JSConverters._
 import japgolly.scalajs.react.Reusability
 import japgolly.scalajs.react.vdom.html_<^._
 
-package object style             {
+package object style {
   implicit val IntStyleExtractor: StyleExtractor[Int] = new StyleExtractor[Int] {
     override def extract(s: Style, key: String): Option[Int] =
       s.styles.get(key).flatMap { x =>
