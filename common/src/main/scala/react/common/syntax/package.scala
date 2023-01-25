@@ -151,7 +151,7 @@ package syntax {
       p.render
   }
 
-  trait VdomSyntax    {
+  trait VdomSyntax {
     // FnComponent to VdomNode conversions
     implicit def GenericFnComponentP2VdomNode[P <: js.Object](
       p: GenericFnComponentP[P]
